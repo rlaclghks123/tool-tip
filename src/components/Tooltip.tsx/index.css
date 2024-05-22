@@ -1,0 +1,149 @@
+.container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+
+  width: fit-content;
+  height: fit-content;
+}
+
+.content {
+  position: absolute;
+  z-index: 200;
+  top: 0px;
+  left: 0px;
+
+  width: fit-content;
+  height: fit-content;
+
+  padding: 5px;
+  border-radius: 5px;
+
+  background-color: #1b2735;
+  color: white;
+  text-align: center;
+}
+
+.content::after {
+  content: '';
+  position: absolute;
+
+  border-width: 5px;
+  border-style: solid;
+}
+
+/* 위쪽 툴팁 */
+.content-top,
+.content-topLeft,
+.content-topRight {
+  bottom: 100%;
+  margin-bottom: 10px;
+}
+
+.content-top::after,
+.content-topLeft::after,
+.content-topRight::after {
+  top: 100%;
+  border-color: #1b2735 transparent transparent transparent;
+}
+
+.content-top::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.content-topLeft::after {
+  left: 10%;
+  transform: translateX(0%);
+}
+.content-topRight::after {
+  left: 90%;
+  transform: translateX(-100%);
+}
+
+/* 왼쪽 툴팁 */
+.content-left,
+.content-leftTop,
+.content-leftBottom {
+  top: -30%;
+  right: 100%;
+  margin-right: 10px;
+}
+
+.content-left::after,
+.content-leftTop::after,
+.content-leftBottom::after {
+  left: 100%;
+  border-color: transparent transparent transparent #1b2735;
+}
+
+.content-left::after {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.content-leftTop::after {
+  top: 10%;
+  transform: translateY(0%);
+}
+.content-leftBottom::after {
+  bottom: 10%;
+  transform: translateY(-100%);
+}
+
+/* 오른쪽 툴팁 */
+
+.content-right,
+.content-rightTop,
+.content-rightBottom {
+  top: -30%;
+  left: 100%;
+  margin-left: 10px;
+}
+
+.content-right::after,
+.content-rightTop::after,
+.content-rightBottom::after {
+  right: 100%;
+  border-color: transparent #1b2735 transparent transparent;
+}
+
+.content-right::after {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.content-rightTop::after {
+  top: 10%;
+  transform: translateY(0%);
+}
+.content-rightBottom::after {
+  bottom: 10%;
+  transform: translateY(-100%);
+}
+
+/* 아래쪽 툴팁 */
+
+.content-bottom,
+.content-bottomLeft,
+.content-bottomRight {
+  top: 100%;
+  margin-top: 10px;
+}
+
+.content-bottom::after,
+.content-bottomLeft::after,
+.content-bottomRight::after {
+  bottom: 100%;
+  border-color: transparent transparent #1b2735 transparent;
+}
+
+.content-bottom::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.content-bottomLeft::after {
+  left: 10%;
+  transform: translateX(0%);
+}
+.content-bottomRight::after {
+  left: 90%;
+  transform: translateX(-100%);
+}
