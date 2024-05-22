@@ -1,7 +1,7 @@
-import './App.css';
+import './styles/reset.css';
 
 function App() {
-  return <div></div>;
+  return <div>Home</div>;
 }
 
 export default App;
