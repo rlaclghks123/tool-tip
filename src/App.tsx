@@ -1,7 +1,8 @@
 import './styles/reset.css';
+import TooltipPage from './pages/TooltipPage';
 
 function App() {
-  return <div>Home</div>;
+  return <TooltipPage />;
 }
 
 export default App;
