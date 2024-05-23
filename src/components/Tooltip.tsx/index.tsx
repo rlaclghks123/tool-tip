@@ -1,8 +1,21 @@
+import { Position } from '../types/tooltip';
 import './index.css';
 
-function Tooltip({ children, direction, position }: any) {
+interface Props {
+  direction: string;
+  position: Position;
+  onMouseOver?: React.MouseEventHandler<HTMLDivElement>;
+  onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;
+  children: React.ReactNode;
+}
+
+function Tooltip({ direction, position, onMouseOver, onMouseLeave, children }: Props) {
   return (
-    <div className="container">
+    <div
+      className="container"
+      onMouseOver={onMouseLeave && onMouseOver}
+      onMouseLeave={onMouseLeave && onMouseLeave}
+    >
       {(direction === 'top' || direction === 'topLeft' || direction === 'topRight') && (
         <div
           style={{
