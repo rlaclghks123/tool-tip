@@ -1,0 +1,15 @@
+.delayAndHoverNotHidden-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 100px;
+  margin-left: 75px;
+  width: 50%;
+  gap: 10px;
+}
+
+.delayAndHoverNotHidden-btn {
+  width: 150px;
+}
