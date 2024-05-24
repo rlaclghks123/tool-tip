@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Position } from '../components/types/tooltip';
+import { Direction, Position } from '../components/types/tooltip';
 
 interface Props {
-  direction: string;
-  variant: 'ENTER_DELAY' | 'LEAVE_DELAY';
+  direction: Direction;
+  variant?: 'DEFAULT' | 'ENTER_DELAY' | 'LEAVE_DELAY';
   delayTime?: number;
 }
 
-function useHoverTooltip({ direction, variant, delayTime }: Props) {
+function useHoverTooltip({ direction, variant = 'DEFAULT', delayTime }: Props) {
   const [isHover, setIsHover] = useState(false);
   const [isHoverLeave, setIsHoverLeave] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -17,15 +17,10 @@ function useHoverTooltip({ direction, variant, delayTime }: Props) {
     direction: '',
   });
 
-  function handleMouseOver(e: React.MouseEvent<HTMLButtonElement>) {
-    const target = e.target as HTMLButtonElement;
-    const top = target.offsetTop - 10;
-    let left = target.offsetLeft;
+  function handleMouseOver(e: React.MouseEvent<HTMLElement>) {
+    const target = e.target as HTMLElement;
 
-    if (direction === 'top') left += 40;
-    if (direction === 'topRight') left += 90;
-
-    setPosition({ top, left, direction });
+    setPosition({ top: target.offsetTop, left: target.offsetLeft, direction });
 
     if (variant === 'ENTER_DELAY') {
       setIsHover(true);
@@ -63,6 +58,7 @@ function useHoverTooltip({ direction, variant, delayTime }: Props) {
     isOpen,
     setIsOpen,
     position,
+    setPosition,
     setIsHoverLeave,
     handleMouseOver,
     handleMouseLeave,

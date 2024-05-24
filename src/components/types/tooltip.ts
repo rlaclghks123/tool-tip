@@ -1,4 +1,5 @@
 export type Direction =
+  | ''
   | 'top'
   | 'topLeft'
   | 'topRight'

@@ -1,6 +1,7 @@
 import './index.css';
 import Tooltip from '../Tooltip.tsx';
 import useHoverTooltip from '../../hooks/useHoverTooltip.ts';
+import { TOOLTIP_CONTENTS } from '../../db/basicTolltipsDb.ts';
 
 function DelayAndHoverNotHidden() {
   const {
@@ -19,36 +20,25 @@ function DelayAndHoverNotHidden() {
 
   const {
     isOpen: thirdOpen,
-    setIsOpen: thirdIsOpen,
     setIsHoverLeave: thirdIsHoverLeave,
     position: thirdPosition,
     handleMouseOver: thirdHandleMouseOver,
     handleMouseLeave: thirdHandleMouseLeave,
   } = useHoverTooltip({ direction: 'topRight', variant: 'LEAVE_DELAY', delayTime: 300 });
 
-  function handleMouseEnterTooltip() {
-    thirdIsOpen(true);
-    thirdIsHoverLeave(false);
-  }
-
-  function handleMouseLeaveTooltip() {
-    thirdIsOpen(false);
-    thirdIsHoverLeave(false);
-  }
-
   return (
     <>
       <div className="delayAndHoverNotHidden-container">
         <button
           className="tooltip-btn delayAndHoverNotHidden-btn"
-          onMouseOver={(e) => firstHandleMouseOver(e)}
+          onMouseOver={firstHandleMouseOver}
           onMouseLeave={() => firstHandleMouseLeave(false)}
         >
           enter-delay 1s
         </button>
         <button
           className="tooltip-btn delayAndHoverNotHidden-btn"
-          onMouseOver={(e) => secondHandleMouseOver(e)}
+          onMouseOver={secondHandleMouseOver}
           onMouseLeave={() => secondHandleMouseLeave(true)}
         >
           leave-delay 1s
@@ -56,32 +46,59 @@ function DelayAndHoverNotHidden() {
 
         <button
           className="tooltip-btn delayAndHoverNotHidden-btn"
-          onMouseOver={(e) => thirdHandleMouseOver(e)}
+          onMouseOver={thirdHandleMouseOver}
           onMouseLeave={() => thirdHandleMouseLeave(true)}
         >
           hover not hidden
         </button>
 
         {firstOpen && (
-          <Tooltip position={firstPosition} direction={firstPosition.direction}>
-            enter-delay 1s contents
+          <Tooltip
+            position={{
+              top: firstPosition.top - 30,
+              left: firstPosition.left - 10,
+              direction: firstPosition.direction,
+            }}
+          >
+            <div className="default-tooltip-contents">
+              {TOOLTIP_CONTENTS.map((content, idx) => (
+                <p key={idx}>{content}</p>
+              ))}
+            </div>
           </Tooltip>
         )}
 
         {secondOpen && (
-          <Tooltip position={secondPosition} direction={secondPosition.direction}>
-            leave-delay 1s contents
+          <Tooltip
+            position={{
+              top: firstPosition.top + 10,
+              left: firstPosition.left + 25,
+              direction: secondPosition.direction,
+            }}
+          >
+            <div className="default-tooltip-contents">
+              {TOOLTIP_CONTENTS.map((content, idx) => (
+                <p key={idx}>{content}</p>
+              ))}
+            </div>
           </Tooltip>
         )}
 
         {thirdOpen && (
           <Tooltip
-            position={thirdPosition}
-            direction={thirdPosition.direction}
-            onMouseOver={handleMouseEnterTooltip}
-            onMouseLeave={handleMouseLeaveTooltip}
+            position={{
+              top: thirdPosition.top - 30,
+              left: thirdPosition.left + 60,
+              direction: thirdPosition.direction,
+            }}
+            onMouseOver={() => thirdIsHoverLeave(false)}
+            onMouseLeave={() => thirdHandleMouseLeave(true)}
           >
-            hover not hidden
+            <div className="default-tooltip-contents">
+              {TOOLTIP_CONTENTS.map((content, idx) => (
+                <p key={idx}>{content}</p>
+              ))}
+            </div>
           </Tooltip>
         )}
       </div>
