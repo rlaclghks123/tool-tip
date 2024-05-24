@@ -1,0 +1,22 @@
+.custom-color-tooltips-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.pink-button,
+.pink-contents-container {
+  background-color: #fac;
+  color: white;
+}
+
+.yellow-button,
+.yellow-contents-container {
+  background-color: #fff1aa;
+  color: black;
+}
+
+.custom-color-contents-container,
+.pink-contents-container,
+.yellow-contents-container {
+  padding: 5px;
+}
