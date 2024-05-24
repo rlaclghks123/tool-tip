@@ -20,130 +20,121 @@
   border-radius: 5px;
 
   background-color: #1b2735;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px;
   color: white;
   text-align: center;
 }
 
-.content::after {
-  content: '';
+.tooltip-arrow {
   position: absolute;
+  z-index: 99;
 
-  border-width: 5px;
+  width: 0;
+  height: 0;
+
   border-style: solid;
 }
 
-/* 위쪽 툴팁 */
-.content-top,
-.content-topLeft,
-.content-topRight {
-  bottom: 100%;
-  margin-bottom: 10px;
+.content-top .tooltip-arrow {
+  left: 50%;
+  bottom: -6px;
+
+  border-width: 7px 7px 0 7px;
+  border-color: #1b2735 transparent transparent transparent;
+
+  transform: translateX(-50%);
 }
 
-.content-top::after,
-.content-topLeft::after,
-.content-topRight::after {
-  top: 100%;
+.content-topLeft .tooltip-arrow {
+  left: 10%;
+  bottom: -6px;
+
+  border-width: 7px 7px 0 7px;
   border-color: #1b2735 transparent transparent transparent;
 }
 
-.content-top::after {
-  left: 50%;
-  transform: translateX(-50%);
-}
-.content-topLeft::after {
-  left: 10%;
-  transform: translateX(0%);
-}
-.content-topRight::after {
-  left: 90%;
-  transform: translateX(-100%);
+.content-topRight .tooltip-arrow {
+  left: 75%;
+  bottom: -6px;
+
+  border-width: 7px 7px 0 7px;
+  border-color: #1b2735 transparent transparent transparent;
 }
 
-/* 왼쪽 툴팁 */
-.content-left,
-.content-leftTop,
-.content-leftBottom {
-  top: -30%;
-  right: 100%;
-  margin-right: 10px;
+.content-left .tooltip-arrow {
+  top: 50%;
+  right: -6px;
+
+  border-width: 7px 0 7px 7px;
+  border-color: transparent transparent transparent #1b2735;
+
+  transform: translateY(-50%);
 }
 
-.content-left::after,
-.content-leftTop::after,
-.content-leftBottom::after {
-  left: 100%;
+.content-leftTop .tooltip-arrow {
+  top: 10%;
+  right: -6px;
+
+  border-width: 7px 0 7px 7px;
   border-color: transparent transparent transparent #1b2735;
 }
 
-.content-left::after {
+.content-leftBottom .tooltip-arrow {
+  bottom: 10%;
+  right: -6px;
+
+  border-width: 7px 0 7px 7px;
+  border-color: transparent transparent transparent #1b2735;
+}
+
+.content-right .tooltip-arrow {
   top: 50%;
+  left: -6px;
+
+  border-width: 7px 7px 7px 0;
+  border-color: transparent #1b2735 transparent transparent;
+
   transform: translateY(-50%);
 }
-.content-leftTop::after {
+
+.content-rightTop .tooltip-arrow {
   top: 10%;
-  transform: translateY(0%);
-}
-.content-leftBottom::after {
-  bottom: 10%;
-  transform: translateY(-100%);
-}
+  left: -6px;
 
-/* 오른쪽 툴팁 */
-
-.content-right,
-.content-rightTop,
-.content-rightBottom {
-  top: -30%;
-  left: 100%;
-  margin-left: 10px;
-}
-
-.content-right::after,
-.content-rightTop::after,
-.content-rightBottom::after {
-  right: 100%;
+  border-width: 7px 7px 7px 0;
   border-color: transparent #1b2735 transparent transparent;
 }
 
-.content-right::after {
-  top: 50%;
-  transform: translateY(-50%);
-}
-.content-rightTop::after {
-  top: 10%;
-  transform: translateY(0%);
-}
-.content-rightBottom::after {
+.content-rightBottom .tooltip-arrow {
+  left: -6px;
   bottom: 10%;
-  transform: translateY(-100%);
+
+  border-width: 7px 7px 7px 0;
+  border-color: transparent #1b2735 transparent transparent;
 }
 
-/* 아래쪽 툴팁 */
+.content-bottom .tooltip-arrow {
+  top: -6px;
+  left: 50%;
 
-.content-bottom,
-.content-bottomLeft,
-.content-bottomRight {
-  top: 100%;
-  margin-top: 10px;
+  border-width: 0 7px 7px 7px;
+  border-color: transparent transparent #1b2735 transparent;
+
+  transform: translateX(-50%);
 }
 
-.content-bottom::after,
-.content-bottomLeft::after,
-.content-bottomRight::after {
-  bottom: 100%;
+.content-bottomLeft .tooltip-arrow {
+  top: -6px;
+  left: 10%;
+
+  border-width: 0 7px 7px 7px;
   border-color: transparent transparent #1b2735 transparent;
 }
 
-.content-bottom::after {
-  left: 50%;
-  transform: translateX(-50%);
-}
-.content-bottomLeft::after {
-  left: 10%;
-  transform: translateX(0%);
-}
-.content-bottomRight::after {
-  left: 90%;
-  transform: translateX(-100%);
+.content-bottomRight .tooltip-arrow {
+  top: -6px;
+  left: 80%;
+
+  border-width: 0 7px 7px 7px;
+  border-color: transparent transparent #1b2735 transparent;
 }

@@ -2,67 +2,57 @@ import { Position } from '../types/tooltip';
 import './index.css';
 
 interface Props {
-  direction: string;
   position: Position;
   onMouseOver?: React.MouseEventHandler<HTMLDivElement>;
   onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;
   children: React.ReactNode;
+  backgroundColor?: string;
+  borderColor?: string;
 }
 
-function Tooltip({ direction, position, onMouseOver, onMouseLeave, children }: Props) {
+function Tooltip({
+  position,
+  onMouseOver,
+  onMouseLeave,
+  backgroundColor,
+  borderColor,
+  children,
+}: Props) {
+  const arrowDirectionStyle = {
+    top: { borderColor: `${borderColor} transparent transparent transparent` },
+    topLeft: { borderColor: `${borderColor} transparent transparent transparent` },
+    topRight: { borderColor: `${borderColor} transparent transparent transparent` },
+
+    left: { borderColor: `transparent transparent transparent ${borderColor}` },
+    leftTop: { borderColor: `transparent transparent transparent ${borderColor}` },
+    leftBottom: { borderColor: `transparent transparent transparent ${borderColor}` },
+
+    right: { borderColor: `transparent  ${borderColor} transparent transparent` },
+    rightTop: { borderColor: `transparent  ${borderColor} transparent transparent` },
+    rightBottom: { borderColor: `transparent  ${borderColor} transparent transparent` },
+
+    bottom: { borderColor: `transparent transparent ${borderColor} transparent` },
+    bottomLeft: { borderColor: `transparent transparent ${borderColor} transparent` },
+    bottomRight: { borderColor: `transparent transparent ${borderColor} transparent` },
+  };
+
   return (
     <div
       className="container"
       onMouseOver={onMouseLeave && onMouseOver}
       onMouseLeave={onMouseLeave && onMouseLeave}
     >
-      {(direction === 'top' || direction === 'topLeft' || direction === 'topRight') && (
-        <div
-          style={{
-            top: `${position?.top - 55}px`,
-            left: position?.left,
-          }}
-          className={`content content-${direction}`}
-        >
-          {children}
-        </div>
-      )}
-
-      {(direction === 'left' || direction === 'leftTop' || direction === 'leftBottom') && (
-        <div
-          style={{
-            top: position?.top,
-            left: `${position?.left - 80}px`,
-          }}
-          className={`content content-${direction}`}
-        >
-          {children}
-        </div>
-      )}
-
-      {(direction === 'right' || direction === 'rightTop' || direction === 'rightBottom') && (
-        <div
-          style={{
-            top: position?.top,
-            left: `${position?.left + 80}px`,
-          }}
-          className={`content content-${direction}`}
-        >
-          {children}
-        </div>
-      )}
-
-      {(direction === 'bottom' || direction === 'bottomLeft' || direction === 'bottomRight') && (
-        <div
-          style={{
-            top: `${position?.top + 35}px`,
-            left: position?.left,
-          }}
-          className={`content content-${direction}`}
-        >
-          {children}
-        </div>
-      )}
+      <div
+        style={{
+          top: `${position?.top - 52}px`,
+          left: `${position?.left}px`,
+          backgroundColor,
+        }}
+        className={`content content-${position.direction}`}
+      >
+        <div className="tooltip-arrow" style={arrowDirectionStyle[position.direction]}></div>
+        {children}
+      </div>
     </div>
   );
 }
