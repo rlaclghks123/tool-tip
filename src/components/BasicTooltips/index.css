@@ -42,7 +42,7 @@
   flex-direction: column;
 
   height: 100%;
-  gap: 5px;
+  gap: 10px;
 }
 
 .right-wrapper {
@@ -50,7 +50,7 @@
   flex-direction: column;
 
   height: 100%;
-  gap: 5px;
+  gap: 10px;
 }
 
 .bottom-wrapper {
@@ -67,4 +67,13 @@
   margin-left: 40px;
 
   height: 130px;
+}
+
+.default-tooltip-contents {
+  width: 90px;
+  font-size: 14px;
+}
+
+.default-tooltip-contents > p {
+  margin: 5px;
 }

@@ -15,7 +15,7 @@ import changedPosition from '../../utils/changedPosition.ts';
 
 function BasicTooltips() {
   const [tooltipState, setTooltipState] = useState({
-    contents: '',
+    contents: [''],
     direction: '',
   });
 
@@ -26,10 +26,10 @@ function BasicTooltips() {
   function handle(e: React.MouseEvent<HTMLButtonElement>, info: BasicTooltipsType) {
     const { direction, tooltipContents } = info;
     const position = {
-      top: { changeTop: 0, changeLeft: 0 },
-      left: { changeTop: -38, changeLeft: 80 },
-      right: { changeTop: -38, changeLeft: -80 },
-      bottom: { changeTop: -90, changeLeft: 0 },
+      top: { changeTop: 30, changeLeft: 10 },
+      left: { changeTop: -33, changeLeft: 110 },
+      right: { changeTop: -33, changeLeft: -80 },
+      bottom: { changeTop: -90, changeLeft: 15 },
     };
 
     const { changedTop, changedLeft } = changedPosition({ direction, position });
@@ -164,7 +164,15 @@ function BasicTooltips() {
         </div>
       </div>
 
-      {isOpen && <Tooltip position={position}>{tooltipState?.contents}</Tooltip>}
+      {isOpen && (
+        <Tooltip position={position}>
+          <div className="default-tooltip-contents">
+            {tooltipState?.contents.map((content, idx) => (
+              <p key={idx}>{content}</p>
+            ))}
+          </div>
+        </Tooltip>
+      )}
     </>
   );
 }

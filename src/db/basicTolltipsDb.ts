@@ -1,26 +1,28 @@
+import { Direction } from '../components/types/tooltip';
+
 export interface BasicTooltipsType {
   id: number;
-  tooltipContents: string;
-  direction: string;
+  tooltipContents: string[];
+  direction: Direction;
   bottonContents: string;
 }
 
 export const TOP_INFO: BasicTooltipsType[] = [
   {
     id: 1,
-    tooltipContents: 'top left contents',
+    tooltipContents: ['prompt text', 'prompt text', ' prompt text'],
     direction: 'topLeft',
     bottonContents: 'TL',
   },
   {
     id: 2,
-    tooltipContents: 'top contents',
+    tooltipContents: ['prompt text', 'prompt text', ' prompt text'],
     direction: 'top',
     bottonContents: 'Top',
   },
   {
     id: 3,
-    tooltipContents: 'top right contents',
+    tooltipContents: ['prompt text', 'prompt text', ' prompt text'],
     direction: 'topRight',
     bottonContents: 'TR',
   },
@@ -29,19 +31,19 @@ export const TOP_INFO: BasicTooltipsType[] = [
 export const LEFT_INFO: BasicTooltipsType[] = [
   {
     id: 1,
-    tooltipContents: 'left top contents',
+    tooltipContents: ['prompt text', 'prompt text', ' prompt text'],
     direction: 'leftTop',
     bottonContents: 'LT',
   },
   {
     id: 2,
-    tooltipContents: 'left contents',
+    tooltipContents: ['prompt text', 'prompt text', ' prompt text'],
     direction: 'left',
     bottonContents: 'Left',
   },
   {
     id: 3,
-    tooltipContents: 'left bottom contents',
+    tooltipContents: ['prompt text', 'prompt text', ' prompt text'],
     direction: 'leftBottom',
     bottonContents: 'LB',
   },
@@ -50,19 +52,19 @@ export const LEFT_INFO: BasicTooltipsType[] = [
 export const RIGHT_INFO: BasicTooltipsType[] = [
   {
     id: 1,
-    tooltipContents: 'right top contents',
+    tooltipContents: ['prompt text', 'prompt text', ' prompt text'],
     direction: 'rightTop',
     bottonContents: 'RT',
   },
   {
     id: 2,
-    tooltipContents: 'right contents',
+    tooltipContents: ['prompt text', 'prompt text', ' prompt text'],
     direction: 'right',
     bottonContents: 'Right',
   },
   {
     id: 3,
-    tooltipContents: 'right bottom contents',
+    tooltipContents: ['prompt text', 'prompt text', ' prompt text'],
     direction: 'rightBottom',
     bottonContents: 'RB',
   },
@@ -71,19 +73,19 @@ export const RIGHT_INFO: BasicTooltipsType[] = [
 export const BOTTOM_INFO: BasicTooltipsType[] = [
   {
     id: 1,
-    tooltipContents: 'bottom left contents',
+    tooltipContents: ['prompt text', 'prompt text', ' prompt text'],
     direction: 'bottomLeft',
     bottonContents: 'BL',
   },
   {
     id: 2,
-    tooltipContents: 'bottom contents',
+    tooltipContents: ['prompt text', 'prompt text', ' prompt text'],
     direction: 'bottom',
     bottonContents: 'Bottom',
   },
   {
     id: 3,
-    tooltipContents: 'bottom right contents',
+    tooltipContents: ['prompt text', 'prompt text', ' prompt text'],
     direction: 'bottomRight',
     bottonContents: 'BR',
   },
