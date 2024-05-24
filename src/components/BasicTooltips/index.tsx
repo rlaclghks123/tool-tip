@@ -2,6 +2,8 @@ import { useState } from 'react';
 
 import './index.css';
 import Tooltip from '../Tooltip.tsx';
+import useHoverTooltip from '../../hooks/useHoverTooltip.ts';
+
 import {
   BOTTOM_INFO,
   BasicTooltipsType,
@@ -9,37 +11,43 @@ import {
   RIGHT_INFO,
   TOP_INFO,
 } from '../../db/basicTolltipsDb.ts';
+import changedPosition from '../../utils/changedPosition.ts';
 
 function BasicTooltips() {
-  const [isHover, setIsHover] = useState(false);
   const [tooltipState, setTooltipState] = useState({
     contents: '',
     direction: '',
   });
 
-  const [position, setPosition] = useState({
-    top: 0,
-    left: 0,
+  const { isOpen, position, setPosition, handleMouseOver, handleMouseLeave } = useHoverTooltip({
+    direction: '',
   });
 
-  function handleMouseOver(e: React.MouseEvent<HTMLButtonElement>, info: BasicTooltipsType) {
-    const target = e.target as HTMLButtonElement;
+  function handle(e: React.MouseEvent<HTMLButtonElement>, info: BasicTooltipsType) {
+    const { direction, tooltipContents } = info;
+    const position = {
+      top: { changeTop: 0, changeLeft: 0 },
+      left: { changeTop: -38, changeLeft: 80 },
+      right: { changeTop: -38, changeLeft: -80 },
+      bottom: { changeTop: -90, changeLeft: 0 },
+    };
 
-    setPosition(() => {
-      return {
-        top: target.offsetTop,
-        left: target.offsetLeft,
-      };
-    });
+    const { changedTop, changedLeft } = changedPosition({ direction, position });
+
+    handleMouseOver(e);
+
+    setPosition((prev) => ({
+      left: prev.left - changedLeft,
+      top: prev.top - changedTop,
+      direction,
+    }));
 
     setTooltipState(() => {
       return {
-        contents: info.tooltipContents,
-        direction: info.direction,
+        contents: tooltipContents,
+        direction: direction,
       };
     });
-
-    setIsHover(true);
   }
 
   return (
@@ -50,8 +58,8 @@ function BasicTooltips() {
             {TOP_INFO.map((info) => (
               <button
                 key={info.id}
-                onMouseOver={(e) => handleMouseOver(e, info)}
-                onMouseLeave={() => setIsHover(false)}
+                onMouseOver={(e) => handle(e, info)}
+                onMouseLeave={() => handleMouseLeave(true)}
                 className="tooltip-btn"
               >
                 {info.bottonContents}
@@ -64,9 +72,9 @@ function BasicTooltips() {
               {LEFT_INFO.map((info) => (
                 <button
                   key={info.id}
+                  onMouseOver={(e) => handle(e, info)}
+                  onMouseLeave={() => handleMouseLeave(true)}
                   className="tooltip-btn"
-                  onMouseOver={(e) => handleMouseOver(e, info)}
-                  onMouseLeave={() => setIsHover(false)}
                 >
                   {info.bottonContents}
                 </button>
@@ -76,9 +84,9 @@ function BasicTooltips() {
               {RIGHT_INFO.map((info) => (
                 <button
                   key={info.id}
+                  onMouseOver={(e) => handle(e, info)}
+                  onMouseLeave={() => handleMouseLeave(true)}
                   className="tooltip-btn"
-                  onMouseOver={(e) => handleMouseOver(e, info)}
-                  onMouseLeave={() => setIsHover(false)}
                 >
                   {info.bottonContents}
                 </button>
@@ -90,9 +98,9 @@ function BasicTooltips() {
             {BOTTOM_INFO.map((info) => (
               <button
                 key={info.id}
+                onMouseOver={(e) => handle(e, info)}
+                onMouseLeave={() => handleMouseLeave(true)}
                 className="tooltip-btn"
-                onMouseOver={(e) => handleMouseOver(e, info)}
-                onMouseLeave={() => setIsHover(false)}
               >
                 {info.bottonContents}
               </button>
@@ -105,22 +113,23 @@ function BasicTooltips() {
             {TOP_INFO.map((info) => (
               <button
                 key={info.id}
+                onMouseOver={(e) => handle(e, info)}
+                onMouseLeave={() => handleMouseLeave(true)}
                 className="tooltip-btn"
-                onMouseOver={(e) => handleMouseOver(e, info)}
-                onMouseLeave={() => setIsHover(false)}
               >
                 {info.bottonContents}
               </button>
             ))}
           </div>
+
           <div className="side-wrapper">
             <div className="left-wrapper">
               {LEFT_INFO.map((info) => (
                 <button
                   key={info.id}
+                  onMouseOver={(e) => handle(e, info)}
+                  onMouseLeave={() => handleMouseLeave(true)}
                   className="tooltip-btn"
-                  onMouseOver={(e) => handleMouseOver(e, info)}
-                  onMouseLeave={() => setIsHover(false)}
                 >
                   {info.bottonContents}
                 </button>
@@ -130,9 +139,9 @@ function BasicTooltips() {
               {RIGHT_INFO.map((info) => (
                 <button
                   key={info.id}
+                  onMouseOver={(e) => handle(e, info)}
+                  onMouseLeave={() => handleMouseLeave(true)}
                   className="tooltip-btn"
-                  onMouseOver={(e) => handleMouseOver(e, info)}
-                  onMouseLeave={() => setIsHover(false)}
                 >
                   {info.bottonContents}
                 </button>
@@ -144,9 +153,9 @@ function BasicTooltips() {
             {BOTTOM_INFO.map((info) => (
               <button
                 key={info.id}
+                onMouseOver={(e) => handle(e, info)}
+                onMouseLeave={() => handleMouseLeave(true)}
                 className="tooltip-btn"
-                onMouseOver={(e) => handleMouseOver(e, info)}
-                onMouseLeave={() => setIsHover(false)}
               >
                 {info.bottonContents}
               </button>
@@ -155,11 +164,7 @@ function BasicTooltips() {
         </div>
       </div>
 
-      {isHover && (
-        <Tooltip position={position} direction={tooltipState?.direction}>
-          {tooltipState?.contents}
-        </Tooltip>
-      )}
+      {isOpen && <Tooltip position={position}>{tooltipState?.contents}</Tooltip>}
     </>
   );
 }
