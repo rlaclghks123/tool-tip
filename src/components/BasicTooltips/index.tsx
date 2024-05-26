@@ -4,14 +4,9 @@ import './index.css';
 import Tooltip from '../Tooltip.tsx';
 import useHoverTooltip from '../../hooks/useHoverTooltip.ts';
 
-import {
-  BOTTOM_INFO,
-  BasicTooltipsType,
-  LEFT_INFO,
-  RIGHT_INFO,
-  TOP_INFO,
-} from '../../db/basicTolltipsDb.ts';
+import { BasicTooltipsType } from '../../db/basicTolltipsDb.ts';
 import changedPosition from '../../utils/changedPosition.ts';
+import CommonBasicTooltipsContainer from './CommonBasicTooltipsContainer.tsx';
 
 function BasicTooltips() {
   const [tooltipState, setTooltipState] = useState({
@@ -23,7 +18,7 @@ function BasicTooltips() {
     direction: '',
   });
 
-  function handle(e: React.MouseEvent<HTMLButtonElement>, info: BasicTooltipsType) {
+  function handleExpandMouseOver(e: React.MouseEvent<HTMLButtonElement>, info: BasicTooltipsType) {
     const { direction, tooltipContents } = info;
     const position = {
       top: { changeTop: 30, changeLeft: 10 },
@@ -52,115 +47,19 @@ function BasicTooltips() {
 
   return (
     <>
-      <div className="basicTooltips-wrapper">
+      <div className="basic-tooltips-wrapper">
         <div className="non-scroll-container">
-          <div className="top-wrapper">
-            {TOP_INFO.map((info) => (
-              <button
-                key={info.id}
-                onMouseOver={(e) => handle(e, info)}
-                onMouseLeave={() => handleMouseLeave(true)}
-                className="tooltip-btn"
-              >
-                {info.bottonContents}
-              </button>
-            ))}
-          </div>
-
-          <div className="side-wrapper">
-            <div className="left-wrapper">
-              {LEFT_INFO.map((info) => (
-                <button
-                  key={info.id}
-                  onMouseOver={(e) => handle(e, info)}
-                  onMouseLeave={() => handleMouseLeave(true)}
-                  className="tooltip-btn"
-                >
-                  {info.bottonContents}
-                </button>
-              ))}
-            </div>
-            <div className="right-wrapper">
-              {RIGHT_INFO.map((info) => (
-                <button
-                  key={info.id}
-                  onMouseOver={(e) => handle(e, info)}
-                  onMouseLeave={() => handleMouseLeave(true)}
-                  className="tooltip-btn"
-                >
-                  {info.bottonContents}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="bottom-wrapper">
-            {BOTTOM_INFO.map((info) => (
-              <button
-                key={info.id}
-                onMouseOver={(e) => handle(e, info)}
-                onMouseLeave={() => handleMouseLeave(true)}
-                className="tooltip-btn"
-              >
-                {info.bottonContents}
-              </button>
-            ))}
-          </div>
+          <CommonBasicTooltipsContainer
+            handleMouseLeave={handleMouseLeave}
+            handleExpandMouseOver={handleExpandMouseOver}
+          />
         </div>
 
         <div className="scroll-box">
-          <div className="top-wrapper">
-            {TOP_INFO.map((info) => (
-              <button
-                key={info.id}
-                onMouseOver={(e) => handle(e, info)}
-                onMouseLeave={() => handleMouseLeave(true)}
-                className="tooltip-btn"
-              >
-                {info.bottonContents}
-              </button>
-            ))}
-          </div>
-
-          <div className="side-wrapper">
-            <div className="left-wrapper">
-              {LEFT_INFO.map((info) => (
-                <button
-                  key={info.id}
-                  onMouseOver={(e) => handle(e, info)}
-                  onMouseLeave={() => handleMouseLeave(true)}
-                  className="tooltip-btn"
-                >
-                  {info.bottonContents}
-                </button>
-              ))}
-            </div>
-            <div className="right-wrapper">
-              {RIGHT_INFO.map((info) => (
-                <button
-                  key={info.id}
-                  onMouseOver={(e) => handle(e, info)}
-                  onMouseLeave={() => handleMouseLeave(true)}
-                  className="tooltip-btn"
-                >
-                  {info.bottonContents}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="bottom-wrapper">
-            {BOTTOM_INFO.map((info) => (
-              <button
-                key={info.id}
-                onMouseOver={(e) => handle(e, info)}
-                onMouseLeave={() => handleMouseLeave(true)}
-                className="tooltip-btn"
-              >
-                {info.bottonContents}
-              </button>
-            ))}
-          </div>
+          <CommonBasicTooltipsContainer
+            handleMouseLeave={handleMouseLeave}
+            handleExpandMouseOver={handleExpandMouseOver}
+          />
         </div>
       </div>
 
