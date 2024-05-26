@@ -17,23 +17,18 @@ function OnAndOffTooltips() {
     );
   }
 
-  function Content() {
-    return (
-      <p
-        className="on-and-off-discription"
-        onMouseOver={(e) => handleMouseOver(e)}
-        onMouseLeave={() => handleMouseLeave(true)}
-      >
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci asperiores atque
-      </p>
-    );
-  }
-
   return (
     <>
       <section className="custom-content-tooltips-container on-and-off-tooltips-container">
         <Button />
-        <Content />
+
+        <p
+          className="on-and-off-discription"
+          onMouseOver={(e) => handleMouseOver(e)}
+          onMouseLeave={() => handleMouseLeave(true)}
+        >
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci asperiores atque
+        </p>
       </section>
 
       {isPossibleHover && isOpen && (
