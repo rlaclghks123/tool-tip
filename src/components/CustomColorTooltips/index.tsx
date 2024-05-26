@@ -1,6 +1,6 @@
-import useHoverTooltip from '../../hooks/useHoverTooltip';
-import Tooltip from '../Tooltip.tsx';
 import './index.css';
+import Tooltip from '../Tooltip.tsx';
+import useHoverTooltip from '../../hooks/useHoverTooltip';
 
 function PinkContents() {
   return <div className="pink-contents-container">pink</div>;
