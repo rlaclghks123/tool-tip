@@ -1,10 +1,12 @@
+import { Direction } from '../components/types/tooltip';
+
 interface PositionChanges {
   changeTop?: number;
   changeLeft?: number;
 }
 
 interface Props {
-  direction: string;
+  direction: Direction;
   position: {
     top: PositionChanges;
     right: PositionChanges;

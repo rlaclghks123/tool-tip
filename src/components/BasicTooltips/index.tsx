@@ -1,20 +1,18 @@
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 
 import './index.css';
 import Tooltip from '../Tooltip.tsx';
-import useHoverTooltip from '../../hooks/useHoverTooltip.ts';
-
-import { BasicTooltipsType } from '../../db/basicTolltipsDb.ts';
-import changedPosition from '../../utils/changedPosition.ts';
 import CommonBasicTooltipsContainer from './CommonBasicTooltipsContainer.tsx';
+
+import useHoverTooltip from '../../hooks/useHoverTooltip.ts';
+import changedPosition from '../../utils/changedPosition.ts';
+import { BasicTooltipsType } from '../../db/basicTolltipsDb.ts';
 
 function BasicTooltips() {
   const [tooltipState, setTooltipState] = useState({
     contents: [''],
     direction: '',
   });
-
-  const ref = useRef(null);
 
   const {
     isOpen: nonScrollIsOpen,
@@ -104,7 +102,7 @@ function BasicTooltips() {
           />
         </div>
 
-        <div className="scroll-box" ref={ref}>
+        <div className="scroll-box">
           <CommonBasicTooltipsContainer
             handleMouseLeave={scrollHandleMouseLeave}
             handleExpandMouseOver={handleExpandMouseOver}
