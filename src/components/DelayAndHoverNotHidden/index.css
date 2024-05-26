@@ -1,4 +1,4 @@
-.delayAndHoverNotHidden-container {
+.delay-and-hover-not-hidden-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,6 +10,6 @@
   gap: 10px;
 }
 
-.delayAndHoverNotHidden-btn {
+.delay-and-hover-not-hidden-btn {
   width: 150px;
 }

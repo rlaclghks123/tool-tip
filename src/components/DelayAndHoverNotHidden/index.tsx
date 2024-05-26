@@ -28,16 +28,16 @@ function DelayAndHoverNotHidden() {
 
   return (
     <>
-      <div className="delayAndHoverNotHidden-container">
+      <div className="delay-and-hover-not-hidden-container">
         <button
-          className="tooltip-btn delayAndHoverNotHidden-btn"
+          className="tooltip-btn delay-and-hover-not-hidden-btn"
           onMouseOver={firstHandleMouseOver}
           onMouseLeave={() => firstHandleMouseLeave(false)}
         >
           enter-delay 1s
         </button>
         <button
-          className="tooltip-btn delayAndHoverNotHidden-btn"
+          className="tooltip-btn delay-and-hover-not-hidden-btn"
           onMouseOver={secondHandleMouseOver}
           onMouseLeave={() => secondHandleMouseLeave(true)}
         >
@@ -45,7 +45,7 @@ function DelayAndHoverNotHidden() {
         </button>
 
         <button
-          className="tooltip-btn delayAndHoverNotHidden-btn"
+          className="tooltip-btn delay-and-hover-not-hidden-btn"
           onMouseOver={thirdHandleMouseOver}
           onMouseLeave={() => thirdHandleMouseLeave(true)}
         >
